@@ -27,12 +27,22 @@ export default [
                     ],
                     depConstraints: [
                         {
-                            sourceTag: "*",
-                            onlyDependOnLibsWithTags: [
-                                "*"
-                            ]
-                        }
-                    ]
+                            sourceTag: 'type:app',
+                            onlyDependOnLibsWithTags: ['type:feature', 'type:ui', 'type:data-access'],
+                        },
+                        {
+                            sourceTag: 'type:feature',
+                            onlyDependOnLibsWithTags: ['type:ui', 'type:data-access'],
+                        },
+                        {
+                            sourceTag: 'type:ui',
+                            onlyDependOnLibsWithTags: [],
+                        },
+                        {
+                            sourceTag: 'type:data-access',
+                            onlyDependOnLibsWithTags: [],
+                        },
+                    ],
                 }
             ]
         }

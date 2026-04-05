@@ -99,3 +99,33 @@ And join the Nx community:
 - [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
 - [Our Youtube channel](https://www.youtube.com/@nxdevtools)
 - [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+
+# Techincal stack
+- Angular 21
+- Nx 22
+- TypeScript 5.9
+- Tailwind CSS 4
+- Angular material
+
+# Module Boundaries
+- type:app can depend on type:feature, type:ui, type:data-access.
+- type:feature can depend on type:ui, type:data-access.
+- type:ui can depend on nothing.
+- type:data-access can depend on nothing.
+
+# Project Structure
+- Vertical scale
+  - type:app
+    - type:feature
+      - type:ui
+      - type:data-access
+      - helper function
+      - store
+      - directive
+      - pipe
+      - ...
+      
+- Horizonal scale
+  - domain
+  - subdomain
+    
