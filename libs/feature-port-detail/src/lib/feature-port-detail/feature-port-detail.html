@@ -1,0 +1,133 @@
+<lib-ui-page-layout [pageTitle]="port()?.name || 'Port Detail'">
+
+  <div page-title class="flex items-center gap-2 mr-3">
+    <a routerLink="/ports" class="text-[#6b7c93] hover:text-[#e8642a] transition-colors">
+      <mat-icon class="!text-current">arrow_back</mat-icon>
+    </a>
+  </div>
+
+  <div page-content class="max-w-4xl">
+
+    <!-- Port Detail Section -->
+    @if (isPortLoading()) {
+    <div class="flex justify-center items-center py-8">
+      <mat-spinner diameter="40" />
+    </div>
+    } @else if (portError()) {
+    <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative mb-6" role="alert">
+      <span class="block sm:inline">{{ portError() }}</span>
+    </div>
+    } @else if (port(); as p) {
+    <mat-card class="!shadow-sm !border !border-[#e8edf2] !rounded-xl mb-8">
+      <mat-card-header class="!px-6 !pt-6 !pb-0 !mb-0">
+        <div class="flex items-center gap-3 w-full">
+          <div>
+            <mat-card-title class="!text-lg !font-semibold !text-[#183944]">{{ p.name }}</mat-card-title>
+            <mat-card-subtitle class="!text-sm !text-[#6b7c93] !mt-0.5 !mb-0">{{ p.country }}</mat-card-subtitle>
+          </div>
+          <span class="ml-auto inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-bold"
+            [class]="p.emissionsRating === 'A' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'">
+            {{ p.emissionsRating }}
+          </span>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content class="!px-6 !pt-4">
+        <p class="text-sm text-[#4a5568] leading-relaxed mb-5">{{ p.description }}</p>
+
+        <mat-divider class="!mb-5" />
+
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-semibold text-[#9eaab8] uppercase tracking-wide">Terminals</span>
+            <span class="text-[#183944] font-semibold text-base">{{ p.numberOfTerminals }}</span>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-semibold text-[#9eaab8] uppercase tracking-wide">Berths</span>
+            <span class="text-[#183944] font-semibold text-base">{{ p.numberOfBerths }}</span>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-semibold text-[#9eaab8] uppercase tracking-wide">Vessel Calls</span>
+            <span class="text-[#183944] font-semibold text-base">{{ p.vesselCalls }}</span>
+          </div>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-xs font-semibold text-[#9eaab8] uppercase tracking-wide">Tugboat Jobs</span>
+            <span class="text-[#183944] font-semibold text-base">{{ p.tugboatJobs }}</span>
+          </div>
+          @if (!isVoyagesLoading() && vesselVoyages().length > 0) {
+
+          }
+        </div>
+      </mat-card-content>
+    </mat-card>
+    }
+
+    <!-- Vessel Voyage Section -->
+    <div class="mt-4">
+      @if (isVoyagesLoading()) {
+      <div class="flex justify-center items-center py-8">
+        <mat-spinner diameter="32" />
+      </div>
+      } @else if (voyagesError()) {
+      <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <span class="block sm:inline">{{ voyagesError() }}</span>
+      </div>
+      } @else {
+      <h3 class="text-lg font-semibold text-[#183944] mb-4">Vessel Voyage</h3>
+      <div class="flex gap-4 items-center mb-4">
+        <span class="text-xs font-semibold text-[#9eaab8] uppercase">Avg. Stay:</span>
+        <span class="text-[#183944] font-semibold text-xs">{{ averageStayDays() }} days</span>
+      </div>
+      <div class="bg-white border border-[#e8edf2] rounded-xl overflow-hidden">
+        <table mat-table [dataSource]="vesselVoyages()" class="w-full shadow-none">
+          <!-- Vessel Name -->
+          <ng-container matColumnDef="vesselName">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Vessel Name</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#183944] !font-medium">{{ row.vesselName }}</td>
+          </ng-container>
+
+          <!-- IMO -->
+          <ng-container matColumnDef="vesselImo">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">IMO</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselImo }}</td>
+          </ng-container>
+
+          <!-- Type -->
+          <ng-container matColumnDef="vesselType">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Type</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselType }}</td>
+          </ng-container>
+
+          <!-- Age -->
+          <ng-container matColumnDef="vesselAge">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Built Year</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselAge }}</td>
+          </ng-container>
+
+          <!-- Arrival -->
+          <ng-container matColumnDef="portArrivalDate">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Arrival</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.portArrivalDate }}</td>
+          </ng-container>
+
+          <!-- Departure -->
+          <ng-container matColumnDef="portDepatureDate">
+            <th mat-header-cell *matHeaderCellDef
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Departure</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.portDepatureDate }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="voyageColumns" class="!bg-[#f8fafc]"></tr>
+          <tr mat-row *matRowDef="let row; columns: voyageColumns;" class="hover:!bg-[#f0f5fa] transition-colors"></tr>
+        </table>
+      </div>
+      }
+    </div>
+
+  </div>
+</lib-ui-page-layout>

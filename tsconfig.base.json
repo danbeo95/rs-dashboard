@@ -1,0 +1,39 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "emitDecoratorMetadata": false,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "preserve",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@angular-nx-workspace/feature-dashboard": [
+        "libs/feature-dashboard/src/index.ts"
+      ],
+      "@angular-nx-workspace/feature-port": ["libs/feature-port/src/index.ts"],
+      "@angular-nx-workspace/ui-page-layout": [
+        "libs/ui-page-layout/src/index.ts"
+      ],
+      "@angular-nx-workspace/data-access": ["libs/data-access/src/index.ts"],
+      "@angular-nx-workspace/feature-port-detail": [
+        "libs/feature-port-detail/src/index.ts"
+      ],
+      "@angular-nx-workspace/feature-customer": [
+        "libs/feature-customer/src/index.ts"
+      ],
+      "@angular-nx-workspace/feature-setting": [
+        "libs/feature-setting/src/index.ts"
+      ],
+      "@angular-nx-workspace/feature-home": ["libs/feature-home/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

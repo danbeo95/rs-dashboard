@@ -1,0 +1,74 @@
+<div class="h-screen w-screen flex flex-col">
+  <!-- Top toolbar -->
+  <mat-toolbar
+    class="!bg-white border-b border-[#e8edf2] !h-14 !px-4 !py-2 !flex !items-center gap-4 sticky top-0 z-50 !shadow-none">
+
+    <!-- Logo badge -->
+    <div class="w-[360px] flex">
+      <div class="flex items-center bg-[#e8642a] px-3 py-1.5 rounded shrink-0">
+        <span class="text-[13px] font-bold text-white tracking-widest leading-none">RIGHTSHIP</span>
+        <mat-icon class="!text-white !text-[18px] !w-[18px] !h-[18px] leading-none">chevron_right</mat-icon>
+      </div>
+    </div>
+
+    <!-- Search -->
+    <mat-form-field appearance="outline" subscriptSizing="dynamic"
+      class="w-80 [&_.mat-mdc-text-field-wrapper]:!bg-[#f3f6f9] [&_.mat-mdc-text-field-wrapper]:!rounded-md [&_.mdc-notched-outline__leading]:!border-0 [&_.mdc-notched-outline__notch]:!border-0 [&_.mdc-notched-outline__trailing]:!border-0 [&_.mat-mdc-form-field-infix]:!min-h-[36px] [&_.mat-mdc-form-field-infix]:!py-[8px]">
+      <mat-icon matPrefix class="!text-[#9eaab8] !text-[18px] !w-[18px] !h-[18px]">search</mat-icon>
+      <input matInput placeholder="Search..." class="!text-sm !text-[#2c4a6e] placeholder:!text-[#9eaab8]">
+    </mat-form-field>
+
+    <!-- Spacer -->
+    <span class="flex-1"></span>
+
+    <!-- Avatar -->
+    <button mat-icon-button aria-label="User profile" class="!p-0 shrink-0">
+      <span
+        class="flex items-center justify-center w-9 h-9 rounded-full bg-[#2c3e50] text-white text-[13px] font-semibold tracking-wide select-none">
+        RS
+      </span>
+    </button>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container class="flex-1">
+
+    <!-- Sidebar -->
+    <mat-sidenav mode="side" opened class="border-r border-[#e8edf2] bg-white pt-4">
+      <mat-nav-list class="!p-0">
+
+        <a mat-list-item [routerLink]="['/home']" routerLinkActive="!border-l-[#e8642a] !border-l-4 !bg-[#f0f5fa]"
+          class=" !mb-1 !rounded-none hover:!bg-[#f0f5fa] transition-colors">
+          <mat-icon matListItemIcon class="!text-[#2c4a6e] !text-[20px] !w-5 !h-5">desktop_windows</mat-icon>
+          <span matListItemTitle class="text-sm text-[#2c4a6e]">Dashboard</span>
+        </a>
+
+        <a mat-list-item [routerLink]="['/ports']"
+          routerLinkActive="!border-l-[#e8642a] !border-l-[#e8642a] !bg-[#f0f5fa] !border-l-4"
+          class="  !bg-[#f0f5fa] !mb-1 !rounded-none hover:!bg-[#f0f5fa] transition-colors">
+          <mat-icon matListItemIcon class="!text-[#2c4a6e] !text-[20px] !w-5 !h-5">anchor</mat-icon>
+          <span matListItemTitle class="text-sm font-medium text-[#2c4a6e]">Ports</span>
+        </a>
+
+        <a mat-list-item [routerLink]="['/customers']" routerLinkActive="!border-l-[#e8642a] !bg-[#f0f5fa] !border-l-4 "
+          class=" !mb-1 !rounded-none hover:!bg-[#f0f5fa] transition-colors">
+          <mat-icon matListItemIcon class="!text-[#2c4a6e] !text-[20px] !w-5 !h-5">person_outline</mat-icon>
+          <span matListItemTitle class="text-sm text-[#2c4a6e]">Customers</span>
+        </a>
+
+        <a mat-list-item [routerLink]="['/settings']" routerLinkActive="!border-l-[#e8642a] !bg-[#f0f5fa] !border-l-4"
+          class=" !mb-1 !rounded-none hover:!bg-[#f0f5fa] transition-colors">
+          <mat-icon matListItemIcon class="!text-[#2c4a6e] !text-[20px] !w-5 !h-5">settings</mat-icon>
+          <span matListItemTitle class="text-sm text-[#2c4a6e]">Settings</span>
+        </a>
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <!-- Main content -->
+    <mat-sidenav-content class="h-full bg-white overflow-y-auto p-6">
+      <router-outlet />
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+</div>

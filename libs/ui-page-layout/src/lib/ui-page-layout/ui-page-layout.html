@@ -1,0 +1,13 @@
+<div class="flex flex-col h-full w-full">
+  <div class="flex items-center px-6 py-4 border-b border-[#e8edf2] bg-white shrink-0">
+    <ng-content select="[page-title]" />
+    @if (pageTitle) {
+    <h1 class="text-lg font-semibold text-[#183944] leading-none">{{ pageTitle }}</h1>
+    }
+  </div>
+
+  <div class="flex-1 overflow-y-auto p-6">
+    <ng-content select="[page-content]" />
+    <ng-content />
+  </div>
+</div>

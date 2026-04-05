@@ -1,0 +1,69 @@
+<lib-ui-page-layout pageTitle="Ports">
+  <div page-content>
+
+    @if (isLoading()) {
+    <div class="flex justify-center items-center py-16">
+      <mat-spinner diameter="40" />
+    </div>
+    } @else {
+    <table mat-table [dataSource]="ports()" class="w-full shadow-none">
+
+      <!-- Name -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Name</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#183944] !font-medium">{{ row.name }}</td>
+      </ng-container>
+
+      <!-- Country -->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Country</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.country }}</td>
+      </ng-container>
+
+      <!-- Terminals -->
+      <ng-container matColumnDef="numberOfTerminals">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Terminals</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.numberOfTerminals }}</td>
+      </ng-container>
+
+      <!-- Berths -->
+      <ng-container matColumnDef="numberOfBerths">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Berths</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.numberOfBerths }}</td>
+      </ng-container>
+
+      <!-- Emissions Rating -->
+      <ng-container matColumnDef="emissionsRating">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Emissions</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.emissionsRating }}
+        </td>
+      </ng-container>
+
+      <!-- Vessel Calls -->
+      <ng-container matColumnDef="vesselCalls">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Vessel Calls</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselCalls }}</td>
+      </ng-container>
+
+      <!-- Tugboat Jobs -->
+      <ng-container matColumnDef="tugboatJobs">
+        <th mat-header-cell *matHeaderCellDef class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">
+          Tugboat Jobs</th>
+        <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.tugboatJobs }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="!bg-[#f8fafc]"></tr>
+      <tr [routerLink]="['/ports', row.id]" mat-row *matRowDef="let row; columns: displayedColumns;"
+        class="hover:!bg-[#f0f5fa] transition-colors cursor-pointer"></tr>
+    </table>
+    }
+
+  </div>
+</lib-ui-page-layout>
