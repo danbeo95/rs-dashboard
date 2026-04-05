@@ -1,7 +1,7 @@
 <lib-ui-page-layout [pageTitle]="port()?.name || 'Port Detail'">
 
   <div page-title class="flex items-center gap-2 mr-3">
-    <a routerLink="/ports" class="text-[#6b7c93] hover:text-[#e8642a] transition-colors">
+    <a routerLink="/ports" style="line-height: 0;" class="text-[#6b7c93] hover:text-[#e8642a] transition-colors">
       <mat-icon class="!text-current">arrow_back</mat-icon>
     </a>
   </div>
@@ -78,8 +78,8 @@
         <span class="text-xs font-semibold text-[#9eaab8] uppercase">Avg. Stay:</span>
         <span class="text-[#183944] font-semibold text-xs">{{ averageStayDays() }} days</span>
       </div>
-      <div class="bg-white border border-[#e8edf2] rounded-xl overflow-hidden">
-        <table mat-table [dataSource]="vesselVoyages()" class="w-full shadow-none">
+      <div class="bg-white border border-[#e8edf2] rounded-xl overflow-x-auto">
+        <table mat-table [dataSource]="vesselVoyages()" class="w-full shadow-none min-w-[800px] md:min-w-0">
           <!-- Vessel Name -->
           <ng-container matColumnDef="vesselName">
             <th mat-header-cell *matHeaderCellDef
@@ -90,8 +90,9 @@
           <!-- IMO -->
           <ng-container matColumnDef="vesselImo">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">IMO</th>
-            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselImo }}</td>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide hidden md:table-cell">IMO</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568] hidden md:table-cell">{{ row.vesselImo }}
+            </td>
           </ng-container>
 
           <!-- Type -->
@@ -104,8 +105,10 @@
           <!-- Age -->
           <ng-container matColumnDef="vesselAge">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Built Year</th>
-            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselAge }}</td>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Built Year
+            </th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselAge }}
+            </td>
           </ng-container>
 
           <!-- Arrival -->
