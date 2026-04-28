@@ -83,29 +83,28 @@
           <!-- Vessel Name -->
           <ng-container matColumnDef="vesselName">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Vessel Name</th>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">Vessel Name</th>
             <td mat-cell *matCellDef="let row" class="!text-sm !text-[#183944] !font-medium">{{ row.vesselName }}</td>
           </ng-container>
 
           <!-- IMO -->
           <ng-container matColumnDef="vesselImo">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide hidden md:table-cell">IMO</th>
-            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568] hidden md:table-cell">{{ row.vesselImo }}
-            </td>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">IMO</th>
+            <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselImo }}</td>
           </ng-container>
 
           <!-- Type -->
           <ng-container matColumnDef="vesselType">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Type</th>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">Type</th>
             <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselType }}</td>
           </ng-container>
 
           <!-- Age -->
           <ng-container matColumnDef="vesselAge">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Built Year
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">Built Year
             </th>
             <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.vesselAge }}
             </td>
@@ -114,14 +113,14 @@
           <!-- Arrival -->
           <ng-container matColumnDef="portArrivalDate">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Arrival</th>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">Arrival</th>
             <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.portArrivalDate }}</td>
           </ng-container>
 
           <!-- Departure -->
           <ng-container matColumnDef="portDepatureDate">
             <th mat-header-cell *matHeaderCellDef
-              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide">Departure</th>
+              class="!text-xs !font-semibold !text-[#6b7c93] uppercase tracking-wide !whitespace-nowrap">Departure</th>
             <td mat-cell *matCellDef="let row" class="!text-sm !text-[#4a5568]">{{ row.portDepatureDate }}</td>
           </ng-container>
 
